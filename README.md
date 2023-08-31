@@ -18,3 +18,12 @@ A compelling secondary objective emerged during the course of the project. It be
 This data modeling project stands as a testament to my expertise in managing complex migrations and enhancing data accessibility. By bridging the gap between platforms and making data understandable, I contributed to the company's efficiency and decision-making processes.
 
 Thank you for taking the time to explore this project within my portfolio. If you have any questions or would like to learn more, feel free to reach out.
+
+##Observations
+While reviewing this project, it's important to note that certain aspects of the code and data have been altered to preserve the confidentiality of the company. To uphold privacy and security measures, fictitious names have been used for tables and columns. These alterations were made with the utmost care to maintain the integrity of the project while safeguarding sensitive information.
+
+By implementing these changes, I aim to demonstrate my commitment to ethical considerations and my dedication to maintaining the confidentiality of proprietary data. The fictitious elements in no way diminish the significance of the project's technical achievements and the strides made in data migration and accessibility.
+
+I appreciate your understanding of these precautions and their significance in a real-world business context. If you have any inquiries regarding the methodology or specific technical aspects, please don't hesitate to get in touch.
+
+Thank you for your interest in exploring this project, and I'm available to provide any further insights or clarifications you may require.

@@ -1,14 +1,14 @@
 WITH ecommerce_transactions AS 
     (SELECT p.id,
-		 q.customer:default_address:customer_id                                                                               AS customer_id,
-		 p.created_at                                                                                                         AS created_at,		
+		 q.customer:default_address:customer_id                                                                   AS customer_id,
+		 p.created_at                                                                                             AS created_at,		
     	CASE
     	WHEN p.gateway = '' THEN
     	'subscription_payments'
     	WHEN p.gateway is NULL THEN
     	'subscription_payments'
     	ELSE p.gateway
-    	END                                                                                                                 AS payment_gateway, 
+    	END                                                                                                               AS payment_gateway, 
      receipt:charges:data[0]:payment_method_details:type                                                                  AS payment_method, 
      receipt:id                                                                                                           AS payment_gateway_transaction_id, 
      if( kind = 'refund', amount *-1 :: float, amount::float )                                                            AS amount, 
@@ -25,15 +25,15 @@ WITH ecommerce_transactions AS
      subscription_transactions AS (
      SELECT 
      id                                                                                                                   AS ID,
-		 account:code                                                                                                         AS customer_id,
-		 created_at                                                                                                           AS created_at,
-		 NULL                                                                                                                 AS payment_gateway,		
+     account:code                                                                                                         AS customer_id,
+     created_at                                                                                                           AS created_at,
+     NULL                                                                                                                 AS payment_gateway,		
     	CASE
     	WHEN payment_method : object = 'credit_card' THEN
     	'card'
-    	END                                                                                                                 AS payment_method, 
+    	END                                                                                                               AS payment_method, 
      payment_gateway:id                                                                                                   AS payment_gateway_transaction_id, 
-     if( type = 'refund', amount *-1 :: float, amount :: float )                                                          AS amount, 
+     if( type = 'refund', amount *-1::float, amount::float )                                                              AS amount, 
      currency, 
      status, 
      type, 

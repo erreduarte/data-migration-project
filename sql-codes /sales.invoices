@@ -1,0 +1,38 @@
+WITH ecommerce_invoices AS (
+  SELECT
+    a.receipt:id                                                        AS ID,
+    a.order_id,
+    a.created_at,
+    a.status,
+    if(kind = 'refund', amount*-1::float, amount::float)                AS total_price,
+    if(kind = 'refund', b.subtotal_price*-1::float,
+                        b.subtotal_price::float)                        AS subtotal_price,
+    if(kind = 'refund', b.total_tax*-1::float, b.total_tax::float)      AS taxes
+  FROM
+    {{ref ('base_ecommerce_transactions') }} a
+  JOIN
+    {{ref ('base_ecommerce_orders') }} b 
+    ON a.order_id = b.id
+),
+
+subscription_invoices AS (
+  SELECT
+    ID,
+    NULL                                                                AS order_id,
+    created_at,
+    state                                                               AS status,
+    total::float                                                        AS total_price,
+    subtotal::float                                                     AS subtotal_price,
+    tax::float                                                          AS taxes,
+    NULL                                                                AS shipping_cost
+  FROM
+    {{ref ('base_subscription_invoices') }}
+),
+
+sales_invoices as(
+SELECT * from ecommerce_invoices
+UNION ALL
+SELECT * from subscription_invoices
+)
+
+SELECT * from sales_invoices

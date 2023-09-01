@@ -1,9 +1,9 @@
 WITH ecommerce_invoices AS (
   SELECT
-    a.receipt:id                                                       AS ID,
-    a.order_id,
-    a.created_at,
-    a.status,
+    a.receipt:id                                                       AS invoice_id,
+    a.order_id                                                         AS order_id,
+    a.created_at                                                       AS created_at,
+    a.status                                                           AS status,
     CASE
       WHEN kind = 'refund' THEN amount * -1::float
       ELSE amount::float
@@ -25,7 +25,7 @@ WITH ecommerce_invoices AS (
 
 subscription_invoices AS (
   SELECT
-    ID,
+    ID                                                                AS invoice_id,
     NULL                                                              AS order_id,
     created_at,
     state                                                             AS status,

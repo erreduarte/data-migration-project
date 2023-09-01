@@ -27,7 +27,7 @@ FROM
   {{ref ('base_subscription_adjustments') }}
 ),
 
-sales_orders AS (
+sales_order_items AS (
  SELECT
     line_item_id,
     order_id,
@@ -52,4 +52,4 @@ sales_orders AS (
 SELECT
   *
 FROM
-  sales_order
+  sales_order_items
